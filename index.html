@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anyera</title>
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon" sizes="72x72">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon" sizes="76x76">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon" sizes="144x144">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon" sizes="152x152">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+  <link href="img/apple-touch-icon-192x192.png" rel="apple-touch-icon" sizes="192x192">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <meta name="msapplication-TileImage" content="img/apple-touch-icon.png">
+  <link href="img/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+  <link href="img/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+  <link href="img/favicon.ico" rel="shortcut icon">
+  <link href="img/site.webmanifest" rel="manifest">
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <script>window.console = window.console || function(t) {};</script>
+</head>
+<body>
+  <div class="overlay"></div>
+  <header class="header">
+    <div class="container header__container">
+      <div class="header__block">
+        <div class="header__flex">
+          <div class="header__logo">
+            <a href="index.html" class="header__logo_link">ЦЕМЕНТАЦИЯ</a>
+          </div>
+          <nav class="header__nav">
+            <ul class="header__nav_list">
+              <li class="header__nav_item">
+                <a href="#" class="header__nav_link text_menu">Услуги</a>
+              </li>
+              <li class="header__nav_item">
+                <a href="#" class="header__nav_link text_menu">Проекты</a>
+              </li>
+              <li class="header__nav_item">
+                <a href="#" class="header__nav_link text_menu">О компании</a>
+              </li>
+              <li class="header__nav_item">
+                <a href="#" class="header__nav_link text_menu">Технологии</a>
+              </li>
+              <li class="header__nav_item">
+                <a href="#" class="header__nav_link text_menu">Сертификаты</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="header__right">
+            <div class="header__social">
+              <a href="#" class="header__social_link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1128 17.22C11.0824 17.22 10.6035 17.069 9.77112 16.4646C9.24462 17.1445 7.57736 17.6758 7.50465 16.7668C7.50465 16.0844 7.35422 15.5078 7.18374 14.8783C6.98066 14.1027 6.75 13.239 6.75 11.9875C6.75 8.99862 9.19197 6.75 12.0852 6.75C14.981 6.75 17.25 9.10941 17.25 12.0152C17.2597 14.8761 14.9613 17.2048 12.1128 17.22ZM12.1554 9.33352C10.7464 9.26049 9.64827 10.24 9.40508 11.776C9.2045 13.0476 9.56052 14.5962 9.86389 14.6768C10.0093 14.7121 10.3753 14.4149 10.6035 14.1858C10.9808 14.4475 11.4201 14.6048 11.8771 14.6416C13.3371 14.7121 14.5846 13.5958 14.6826 12.1311C14.7397 10.6633 13.6156 9.42003 12.1554 9.33603L12.1554 9.33352Z" fill="currentColor"/>
+                  <circle cx="12" cy="12" r="11.5" stroke="currentColor"/>
+                </svg>
+              </a>
+              <a href="#" class="header__social_link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.42026 11.8016C10.0375 10.6373 11.7827 9.86975 12.656 9.49891C15.1492 8.44007 15.6673 8.25614 16.005 8.25006C16.0793 8.24873 16.2453 8.26752 16.3529 8.35664C16.4437 8.43189 16.4687 8.53354 16.4807 8.60488C16.4926 8.67623 16.5075 8.83875 16.4957 8.96575C16.3606 10.4152 15.7759 13.9327 15.4785 15.5561C15.3527 16.243 15.1049 16.4734 14.865 16.4959C14.3436 16.5449 13.9477 16.1441 13.4427 15.8061C12.6526 15.2773 12.2062 14.9481 11.4392 14.432C10.5528 13.8356 11.1274 13.5078 11.6325 12.9721C11.7647 12.8319 14.0619 10.6985 14.1063 10.505C14.1119 10.4808 14.1171 10.3906 14.0646 10.3429C14.0121 10.2953 13.9346 10.3116 13.8787 10.3245C13.7994 10.3429 12.5371 11.1948 10.0917 12.8802C9.73344 13.1314 9.4089 13.2538 9.11813 13.2474C8.79757 13.2403 8.18095 13.0623 7.72255 12.9102C7.16031 12.7236 6.71345 12.6249 6.75236 12.308C6.77263 12.1429 6.99526 11.9741 7.42026 11.8016Z" fill="currentColor"/>
+                  <circle cx="12" cy="12" r="11.5" stroke="currentColor"/>
+                </svg>
+              </a>
+            </div>
+            <a href="tel://+7999454322" class="header__phone button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M13.797 10.7551L13.4174 11.1325C13.4174 11.1325 12.5153 12.0295 10.0528 9.58102C7.59026 7.1325 8.49242 6.23547 8.49242 6.23547L8.73143 5.99781C9.32022 5.41236 9.37573 4.47242 8.86203 3.78623L7.81121 2.38256C7.1754 1.53325 5.94679 1.42106 5.21804 2.14568L3.91004 3.44625C3.54869 3.80555 3.30654 4.27132 3.3359 4.788C3.41103 6.10984 4.00909 8.95387 7.3463 12.2721C10.8853 15.791 14.2059 15.9309 15.5637 15.8043C15.9932 15.7642 16.3668 15.5455 16.6678 15.2462L17.8516 14.0691C18.6506 13.2746 18.4253 11.9124 17.4029 11.3566L15.8108 10.4912C15.1395 10.1262 14.3216 10.2334 13.797 10.7551Z" fill="currentColor"/>
+              </svg>
+              <span>+7 (999) 454-43-22</span>
+            </a>
+            <button class="header__call button">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>Заказать звонок</span>
+            </button>
+            <button class="header__burger">
+              <span class="header__burger_line"></span>
+              <span class="header__burger_line"></span>
+              <span class="header__burger_line"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <section class="top" id="top"></section>
+    <section class="hero">
+      <div class="hero__block">
+        <div class="container hero__container">
+          <div class="hero__flex">
+            <h1 class="hero__head">Инъекционные технологии <span>для сохранения зданий и оснований</span></h1>
+            <p class="hero__desc text_two">
+              Укрепляем фундаменты, грунты и кирпичные стены на 
+              объектах культурного наследия. Работаем аккуратно, 
+              по проекту, без вмешательства в исторические элементы.
+            </p>
+            <button class="hero__button button__primary button">
+              <span>Оставить заявку</span>
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="hero__image">
+          <img src="./img/hero/img.webp" alt="">
+        </div>
+      </div>
+    </section>
+    <section class="work">
+      <div class="container work__container">
+        <div class="work__block">
+          <div class="work__top">
+            <h2 class="work__head">
+              Мы выполняем инженерные работы, 
+              <span>от которых зависит безопасность и сохранность здания</span>
+            </h2>
+            <div class="work__divider"></div>
+            <p class="work__name square button">Чем мы занимаемся</p>
+          </div>
+          <div class="work__bottom">
+            <div class="work__flex">
+              <div class="work__left">
+                <div class="work__info">
+                  <h4 class="work__heading">В наши работы входит:</h4>
+                  <ul class="work__list">
+                    <li class="work__item">
+                      <p class="work__desc text_two">цементация фундаментов и грунтов</p>
+                    </li>
+                    <li class="work__item">
+                      <p class="work__desc text_two">восстановление сплошности кладки</p>
+                    </li>
+                    <li class="work__item">
+                      <p class="work__desc text_two">гидроизоляция кирпичных стен</p>
+                    </li>
+                    <li class="work__item">
+                      <p class="work__desc text_two">противокапиллярная защита</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="work__info">
+                  <h4 class="work__heading">Все работы выполняем методом инъектирования</h4>
+                  <p class="work__description text_two">
+                    Аккуратно, без демонтажа и вмешательства в архитектурный облик. Технологии и материалы подбираем индивидуально под каждый объект.
+                  </p>
+                </div>
+                <div class="work__info">
+                  <h4 class="work__heading">Работаем только на субподряде</h4>
+                  <p class="work__description text_two">
+                    Не выполняем отделочные и декоративные реставрационные работы (лепнина, роспись, фрески, золочение). Мы отвечаем именно за конструктивную часть.
+                  </p>
+                </div>
+                <div class="work__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </div>
+              <div class="work__right">
+                <div class="work__info">
+                  <h4 class="work__heading">[Собственное оборудование]</h4>
+                  <p class="work__description text_two">
+                    Инъекционные насосы, установки высокой производительности и оборудование для бурения каналов – всё своё, без аренды и задержек.
+                  </p>
+                </div>
+                <div class="work__info">
+                  <h4 class="work__heading">[Материалы, допущенные к реставрационным работам]</h4>
+                  <p class="work__description text_two">
+                    Используем сертифицированные составы и гели, рекомендованные для объектов культурного наследия.
+                  </p>
+                </div>
+                <div class="work__info">
+                  <h4 class="work__heading">[Инженеры с опытом 10+ лет]</h4>
+                  <p class="work__description text_two">
+                    Команда, которая знает специфику старых зданий: несущая способность кладки, капиллярный подсос, работу грунтов под фундаментами.
+                  </p>
+                </div>
+                <div class="work__info">
+                  <h4 class="work__heading">[Комплекс работ одним подрядчиком]</h4>
+                  <p class="work__description text_two">
+                    Цементация фундаментов и грунтов, гидроизоляция, восстановление сплошности кирпича – закрываем весь цикл инъекционных работ на объекте.
+                  </p>
+                </div>
+                <div class="work__info">
+                  <h4 class="work__heading">[Фиксированная цена]</h4>
+                  <p class="work__description text_two">
+                    Все расчёты прозрачны — без скрытых объемов и доплат в процессе.
+                  </p>
+                </div>
+                <button class="work__button button__second button">
+                  <span>Подробнее о нас</span>
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="tech">
+      <div class="container tech__container">
+        <div class="tech__block">
+          <div class="tech__top">
+            <h2 class="tech__head">Технологии <span>для зданий, конструкций, оснований</span></h2>
+            <div class="tech__divider"></div>
+            <div class="tech__flex">
+              <div class="tech__left">
+                <p class="tech__name square button">Услуги</p>
+              </div>
+              <div class="tech__right">
+                <p class="tech__desc">По запросу направим расширенный референс-лист, релевантный вашему проекту. Lorem ipsum dolor sit amet consectetur. Amet lobortis diam odio bibendum non consequat sed tellus. Pulvinar diam dolor diam vel viverra.</p>
+              </div>
+            </div>
+          </div>
+          <ul class="tech__list">
+            <li class="tech__item">
+              <a href="#" class="tech__link">
+                <h2 class="tech__number">01</h2>
+                <div class="tech__info">
+                  <h4 class="tech__heading">Инъекционная цементация фундаментов</h4>
+                  <p class="tech__description text_two">Укрепляем основания зданий, восстанавливаем их несущую способность, заполняем пустоты и каверны. Работаем точечно, без демонтажа конструкций.</p>
+                  <button class="tech__call button">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>Заказать услугу</span>
+                  </button>
+                </div>
+                <div class="tech__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </a>
+            </li>
+            <li class="tech__item">
+              <a href="#" class="tech__link">
+                <h2 class="tech__number">02</h2>
+                <div class="tech__info">
+                  <h4 class="tech__heading">Цементация грунтов</h4>
+                  <p class="tech__description text_two">Укрепление слабых грунтов под фундаментами зданий. Повышаем плотность грунтового массива и предотвращаем дальнейшее проседание.</p>
+                  <button class="tech__call button">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>Заказать услугу</span>
+                  </button>
+                </div>
+                <div class="tech__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </a>
+            </li>
+            <li class="tech__item">
+              <a href="#" class="tech__link">
+                <h2 class="tech__number">03</h2>
+                <div class="tech__info">
+                  <h4 class="tech__heading">Цементация контакта фундамент–грунт</h4>
+                  <p class="tech__description text_two">Заполняем пустоты, образовавшиеся между фундаментом и грунтом, восстанавливая равномерность опирания и предотвращая деформации здания.</p>
+                  <button class="tech__call button">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>Заказать услугу</span>
+                  </button>
+                </div>
+                <div class="tech__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </a>
+            </li>
+            <li class="tech__item">
+              <a href="#" class="tech__link">
+                <h2 class="tech__number">04</h2>
+                <div class="tech__info">
+                  <h4 class="tech__heading">Горизонтальная гидроизоляция</h4>
+                  <p class="tech__description text_two">Останавливаем капиллярный подсос влаги в кирпичных стенах. Создаем надёжный отсечной слой без вскрытия отделки.</p>
+                  <button class="tech__call button">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>Заказать услугу</span>
+                  </button>
+                </div>
+                <div class="tech__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </a>
+            </li>
+            <li class="tech__item">
+              <a href="#" class="tech__link">
+                <h2 class="tech__number">05</h2>
+                <div class="tech__info">
+                  <h4 class="tech__heading">Вертикальная гидроизоляция кирпичных стен</h4>
+                  <p class="tech__description text_two">Вводим акрилатные гели и гидрофобизаторы для защиты кладки от влаги и разрушения. Подходит для ОКН и исторических зданий.</p>
+                  <button class="tech__call button">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>Заказать услугу</span>
+                  </button>
+                </div>
+                <div class="tech__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </a>
+            </li>
+            <li class="tech__item">
+              <a href="#" class="tech__link">
+                <h2 class="tech__number">06</h2>
+                <div class="tech__info">
+                  <h4 class="tech__heading">Восстановление сплошности кирпичных стен</h4>
+                  <p class="tech__description text_two">Укрепляем основания зданий, восстанавливаем их несущую способность, заполняем пустоты и каверны. Работаем точечно, без демонтажа конструкций.</p>
+                  <button class="tech__call button">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>Заказать услугу</span>
+                  </button>
+                </div>
+                <div class="tech__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </a>
+            </li>
+            <li class="tech__item">
+              <a href="#" class="tech__link">
+                <h2 class="tech__number">07</h2>
+                <div class="tech__info">
+                  <h4 class="tech__heading">Противокапиллярная обработка</h4>
+                  <p class="tech__description text_two">Останавливаем движение влаги вверх по стене. Используем растворы, совместимые с историческими материалами.</p>
+                  <button class="tech__call button">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>Заказать услугу</span>
+                  </button>
+                </div>
+                <div class="tech__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </a>
+            </li>
+            <li class="tech__item">
+              <a href="#" class="tech__link">
+                <h2 class="tech__number">08</h2>
+                <div class="tech__info">
+                  <h4 class="tech__heading">Инъекционное заполнение трещин</h4>
+                  <p class="tech__description text_two">Точная подача материала под контролем давления. Подходит для сложных трещин, которые невозможно восстановить традиционным методом.</p>
+                  <button class="tech__call button">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>Заказать услугу</span>
+                  </button>
+                </div>
+                <div class="tech__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </a>
+            </li>
+            <li class="tech__item">
+              <a href="#" class="tech__link">
+                <h2 class="tech__number">09</h2>
+                <div class="tech__info">
+                  <h4 class="tech__heading">Алмазное бурение под инъекционные каналы</h4>
+                  <p class="tech__description text_two">Создаем каналы нужного диаметра и глубины для инъекции, не повреждая конструкцию и не нарушая архитектурные элементы.</p>
+                  <button class="tech__call button">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>Заказать услугу</span>
+                  </button>
+                </div>
+                <div class="tech__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </a>
+            </li>
+            <li class="tech__item">
+              <a href="#" class="tech__link">
+                <h2 class="tech__number">10</h2>
+                <div class="tech__info">
+                  <h4 class="tech__heading">Проектирование технологии работ</h4>
+                  <p class="tech__description text_two">Разрабатываем индивидуальный проект производства работ, подбираем материалы, схемы бурения и параметры инъекции под конкретный объект.</p>
+                  <button class="tech__call button">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>Заказать услугу</span>
+                  </button>
+                </div>
+                <div class="tech__image">
+                  <img src="./img/hero/img.webp" alt="">
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="specialist">
+      <div class="container specialist__container">
+        <div class="specialist__block">
+          <div class="specialist__flex">
+            <div class="specialist__top">
+              <p class="specialist__name square_two button">О компании</p>
+              <div class="specialist__info">
+                <div class="specialist__left">
+                  <h2 class="specialist__head">
+                    Cementacia – подрядчик узкой специализации, <span>работающий на объектах культурного наследия и сложных зданиях исторической застройки.</span>
+                  </h2>
+                </div>
+                <div class="specialist__right">
+                  <p class="specialist__desc">
+                    Мы выполняем инженерные работы, от которых зависит безопасность и сохранность здания: цементация фундаментов и грунтов, восстановление сплошности кладки, гидроизоляция кирпичных стен, противокапиллярная защита.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <ul class="specialist__list">
+              <li class="specialist__item">
+                <p class="specialist__heading title_one">2019</p>
+                <p class="specialist__description button">год основания</p>
+              </li>
+              <li class="specialist__item">
+                <p class="specialist__heading title_one">21</p>
+                <p class="specialist__description button">успешно выполненный объект по цементации</p>
+              </li>
+              <li class="specialist__item">
+                <p class="specialist__heading title_one">15</p>
+                <p class="specialist__description button">объектов гидроизоляции и восстановления кладки</p>
+              </li>
+              <li class="specialist__item">
+                <p class="specialist__heading title_one">50+</p>
+                <p class="specialist__description button">разработано индивидуальных проектов производства работ</p>
+              </li>
+              <li class="specialist__item">
+                <p class="specialist__heading title_one"><1%</p>
+                <p class="specialist__description button">гарантийных случаев</p>
+              </li>
+              <li class="specialist__item">
+                <p class="specialist__heading title_one">24/7</p>
+                <p class="specialist__description button">на связи с заказчиками</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="contract">
+      <div class="container contract__container">
+        <div class="contract__block">
+          <div class="contract__top">
+            <p class="contract__name square_two button">Как мы работаем</p>
+            <div class="contract__flex">
+              <div class="contract__left">
+                <h2 class="contract__head">Работаем четко по договору, <span>без срывов сроков и без переплат</span></h2>
+              </div>
+            </div>
+          </div>
+          <ul class="contract__list">
+            <li class="contract__item">
+              <p class="contract__description text_two">Lorem ipsum dolor sit amet consectetur. Laoreet arcu sit odio curabitur adipiscing tempor.</p>
+              <div class="contract__bottom">
+                <h5 class="contract__heading">Выезд инженера или работа по переданным материалам</h5>
+                <div class="contract__divider"></div>
+                <p class="contract__number">01</p>
+              </div>
+            </li>
+            <li class="contract__item">
+              <p class="contract__description text_two">Lorem ipsum dolor sit amet consectetur. Laoreet arcu sit odio curabitur adipiscing tempor.</p>
+              <div class="contract__bottom">
+                <h5 class="contract__heading">Шурфы / обследование / анализ состояния</h5>
+                <div class="contract__divider"></div>
+                <p class="contract__number">02</p>
+              </div>
+            </li>
+            <li class="contract__item">
+              <p class="contract__description text_two">Lorem ipsum dolor sit amet consectetur. Laoreet arcu sit odio curabitur adipiscing tempor.</p>
+              <div class="contract__bottom">
+                <h5 class="contract__heading">Проект производства работ (ППР)</h5>
+                <div class="contract__divider"></div>
+                <p class="contract__number">03</p>
+              </div>
+            </li>
+            <li class="contract__item">
+              <div class="contract__image">
+                <img src="./img/contract/img.webp" alt="">
+              </div>
+            </li>
+            <li class="contract__item">
+              <div class="contract__image">
+                <img src="./img/contract/img.webp" alt="">
+              </div>
+            </li>
+            <li class="contract__item">
+              <p class="contract__description text_two">Lorem ipsum dolor sit amet consectetur. Laoreet arcu sit odio curabitur adipiscing tempor.</p>
+              <div class="contract__bottom">
+                <h5 class="contract__heading">Подготовка и бурение каналов</h5>
+                <div class="contract__divider"></div>
+                <p class="contract__number">04</p>
+              </div>
+            </li>
+            <li class="contract__item">
+              <p class="contract__description text_two">Lorem ipsum dolor sit amet consectetur. Laoreet arcu sit odio curabitur adipiscing tempor.</p>
+              <div class="contract__bottom">
+                <h5 class="contract__heading">Инъектирование с фиксацией параметров</h5>
+                <div class="contract__divider"></div>
+                <p class="contract__number">05</p>
+              </div>
+            </li>
+            <li class="contract__item">
+              <div class="contract__bottom">
+                <h4 class="contract__write">Напишите нам</h4>
+                <p class="contract__description">Инженер изучит ваш проект, предложит технологию работ и ответит на все вопросы.</p>
+              </div>
+              <button class="contract__button button__second button">
+                <span>Оставить заявку</span>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="build">
+      <div class="container build__container">
+        <div class="build__block">
+          <div class="build__flex">
+            <div class="build__top">
+              <h2 class="build__head">Технологии <span>для зданий, конструкций, оснований</span></h2>
+            </div>
+            <div class="build__divider"></div>
+            <div class="build__bottom">
+              <div class="build__left">
+                <p class="build__name square button">Проекты</p>
+              </div>
+              <div class="build__right">
+                <p class="build__desc">По запросу направим расширенный референс-лист, релевантный вашему проекту.</p>
+              </div>
+            </div>
+          </div>
+          <div class="build__slider">
+            <div class="build__buttons">
+              <div class="build__buttons_left">
+                <button class="build__button build__button_one button active">Укрепление фундаментов</button>
+                <button class="build__button build__button_two button">Гидроизоляция кирпича</button>
+                <button class="build__button build__button_three button">Цементация грунтов</button>
+              </div>
+              <div class="build__buttons_right">
+                <div class="swiper__buttons swiper__buttons_one active">
+                  <div class="swiper-button-prev build__prev_one">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0303 5.46967C16.3232 5.76256 16.3232 6.23744 16.0303 6.53033L10.5607 12L16.0303 17.4697C16.3232 17.7626 16.3232 18.2374 16.0303 18.5303C15.7374 18.8232 15.2626 18.8232 14.9697 18.5303L8.96967 12.5303C8.67678 12.2374 8.67678 11.7626 8.96967 11.4697L14.9697 5.46967C15.2626 5.17678 15.7374 5.17678 16.0303 5.46967Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div class="swiper-button-next build__next_one">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0303 5.46967C16.3232 5.76256 16.3232 6.23744 16.0303 6.53033L10.5607 12L16.0303 17.4697C16.3232 17.7626 16.3232 18.2374 16.0303 18.5303C15.7374 18.8232 15.2626 18.8232 14.9697 18.5303L8.96967 12.5303C8.67678 12.2374 8.67678 11.7626 8.96967 11.4697L14.9697 5.46967C15.2626 5.17678 15.7374 5.17678 16.0303 5.46967Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="swiper__buttons swiper__buttons_two">
+                  <div class="swiper-button-prev build__prev_two">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0303 5.46967C16.3232 5.76256 16.3232 6.23744 16.0303 6.53033L10.5607 12L16.0303 17.4697C16.3232 17.7626 16.3232 18.2374 16.0303 18.5303C15.7374 18.8232 15.2626 18.8232 14.9697 18.5303L8.96967 12.5303C8.67678 12.2374 8.67678 11.7626 8.96967 11.4697L14.9697 5.46967C15.2626 5.17678 15.7374 5.17678 16.0303 5.46967Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div class="swiper-button-next build__next_two">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0303 5.46967C16.3232 5.76256 16.3232 6.23744 16.0303 6.53033L10.5607 12L16.0303 17.4697C16.3232 17.7626 16.3232 18.2374 16.0303 18.5303C15.7374 18.8232 15.2626 18.8232 14.9697 18.5303L8.96967 12.5303C8.67678 12.2374 8.67678 11.7626 8.96967 11.4697L14.9697 5.46967C15.2626 5.17678 15.7374 5.17678 16.0303 5.46967Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="swiper__buttons swiper__buttons_three">
+                  <div class="swiper-button-prev build__prev_three">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0303 5.46967C16.3232 5.76256 16.3232 6.23744 16.0303 6.53033L10.5607 12L16.0303 17.4697C16.3232 17.7626 16.3232 18.2374 16.0303 18.5303C15.7374 18.8232 15.2626 18.8232 14.9697 18.5303L8.96967 12.5303C8.67678 12.2374 8.67678 11.7626 8.96967 11.4697L14.9697 5.46967C15.2626 5.17678 15.7374 5.17678 16.0303 5.46967Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div class="swiper-button-next build__next_three">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0303 5.46967C16.3232 5.76256 16.3232 6.23744 16.0303 6.53033L10.5607 12L16.0303 17.4697C16.3232 17.7626 16.3232 18.2374 16.0303 18.5303C15.7374 18.8232 15.2626 18.8232 14.9697 18.5303L8.96967 12.5303C8.67678 12.2374 8.67678 11.7626 8.96967 11.4697L14.9697 5.46967C15.2626 5.17678 15.7374 5.17678 16.0303 5.46967Z" fill="currentColor"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="build__swiper swiper build__swiper_one active">
+              <ul class="build__list swiper-wrapper">
+                <li class="build__item swiper-slide">
+                  <a href="#" class="build__link">
+                    <div class="build__image">
+                      <img src="img/build/img1.webp" alt="">
+                    </div>
+                    <div class="build__info">
+                      <h4 class="build__head">Усиление фундаментов сохраняемого здания методом инъекционной цементации</h4>
+                      <div class="build__information">
+                        <p class="build__type">Наименование объекта:</p>
+                        <p class="build__description">Центральный Московский ипподром, Беговая ул., 22, Москва</p>
+                      </div>
+                      <div class="build__information">
+                        <p class="build__type">Срок выполнения:</p>
+                        <p class="build__description">13.09.2022 — 12.11.2023</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="build__item swiper-slide">
+                  <a href="#" class="build__link">
+                    <div class="build__image">
+                      <img src="img/build/img2.webp" alt="">
+                    </div>
+                    <div class="build__info">
+                      <h4 class="build__head">Усиление фундаментов сохраняемого здания методом инъекционной цементации</h4>
+                      <div class="build__information">
+                        <p class="build__type">Наименование объекта:</p>
+                        <p class="build__description">Центральный Московский ипподром, Беговая ул., 22, Москва</p>
+                      </div>
+                      <div class="build__information">
+                        <p class="build__type">Срок выполнения:</p>
+                        <p class="build__description">13.09.2022 — 12.11.2023</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="build__item swiper-slide">
+                  <a href="#" class="build__link">
+                    <div class="build__image">
+                      <img src="img/build/img1.webp" alt="">
+                    </div>
+                    <div class="build__info">
+                      <h4 class="build__head">Усиление фундаментов сохраняемого здания методом инъекционной цементации</h4>
+                      <div class="build__information">
+                        <p class="build__type">Наименование объекта:</p>
+                        <p class="build__description">Центральный Московский ипподром, Беговая ул., 22, Москва</p>
+                      </div>
+                      <div class="build__information">
+                        <p class="build__type">Срок выполнения:</p>
+                        <p class="build__description">13.09.2022 — 12.11.2023</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="build__item swiper-slide">
+                  <a href="#" class="build__link">
+                    <div class="build__image">
+                      <img src="img/build/img2.webp" alt="">
+                    </div>
+                    <div class="build__info">
+                      <h4 class="build__head">Усиление фундаментов сохраняемого здания методом инъекционной цементации</h4>
+                      <div class="build__information">
+                        <p class="build__type">Наименование объекта:</p>
+                        <p class="build__description">Центральный Московский ипподром, Беговая ул., 22, Москва</p>
+                      </div>
+                      <div class="build__information">
+                        <p class="build__type">Срок выполнения:</p>
+                        <p class="build__description">13.09.2022 — 12.11.2023</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="build__item swiper-slide">
+                  <a href="#" class="build__link">
+                    <div class="build__image">
+                      <img src="img/build/img1.webp" alt="">
+                    </div>
+                    <div class="build__info">
+                      <h4 class="build__head">Усиление фундаментов сохраняемого здания методом инъекционной цементации</h4>
+                      <div class="build__information">
+                        <p class="build__type">Наименование объекта:</p>
+                        <p class="build__description">Центральный Московский ипподром, Беговая ул., 22, Москва</p>
+                      </div>
+                      <div class="build__information">
+                        <p class="build__type">Срок выполнения:</p>
+                        <p class="build__description">13.09.2022 — 12.11.2023</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="build__swiper swiper build__swiper_two">
+              <ul class="build__list swiper-wrapper">
+                <li class="build__item swiper-slide">
+                  <a href="#" class="build__link">
+                    <div class="build__image">
+                      <img src="img/build/img1.webp" alt="">
+                    </div>
+                    <div class="build__info">
+                      <h4 class="build__head">Усиление фундаментов сохраняемого здания методом инъекционной цементации</h4>
+                      <div class="build__information">
+                        <p class="build__type">Наименование объекта:</p>
+                        <p class="build__description">Центральный Московский ипподром, Беговая ул., 22, Москва</p>
+                      </div>
+                      <div class="build__information">
+                        <p class="build__type">Срок выполнения:</p>
+                        <p class="build__description">13.09.2022 — 12.11.2023</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="build__item swiper-slide">
+                  <a href="#" class="build__link">
+                    <div class="build__image">
+                      <img src="img/build/img2.webp" alt="">
+                    </div>
+                    <div class="build__info">
+                      <h4 class="build__head">Усиление фундаментов сохраняемого здания методом инъекционной цементации</h4>
+                      <div class="build__information">
+                        <p class="build__type">Наименование объекта:</p>
+                        <p class="build__description">Центральный Московский ипподром, Беговая ул., 22, Москва</p>
+                      </div>
+                      <div class="build__information">
+                        <p class="build__type">Срок выполнения:</p>
+                        <p class="build__description">13.09.2022 — 12.11.2023</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="build__swiper swiper build__swiper_three">
+              <ul class="build__list swiper-wrapper">
+                <li class="build__item swiper-slide">
+                  <a href="#" class="build__link">
+                    <div class="build__image">
+                      <img src="img/build/img1.webp" alt="">
+                    </div>
+                    <div class="build__info">
+                      <h4 class="build__head">Усиление фундаментов сохраняемого здания методом инъекционной цементации</h4>
+                      <div class="build__information">
+                        <p class="build__type">Наименование объекта:</p>
+                        <p class="build__description">Центральный Московский ипподром, Беговая ул., 22, Москва</p>
+                      </div>
+                      <div class="build__information">
+                        <p class="build__type">Срок выполнения:</p>
+                        <p class="build__description">13.09.2022 — 12.11.2023</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="docs">
+      <div class="container docs__container">
+        <div class="docs__block">
+          <div class="docs__flex">
+            <div class="docs__top">
+              <h2 class="docs__head">Lorem ipsum dolor <span>sit amet consectetur. Ultrices nunc dolor magna placerat.</span></h2>
+            </div>
+            <div class="docs__divider"></div>
+            <div class="docs__bottom">
+              <div class="docs__left">
+                <p class="docs__name square button">Сертификаты</p>
+              </div>
+              <div class="docs__right">
+                <p class="docs__desc">За 6 лет инженерных работ и сервисе мы получили признание ведущих международных организаций и стали победителями престижных конкурсов. Каждый сертификат — подтверждение того, что ваш объект в руках профессионалов.</p>
+              </div>
+            </div>
+          </div>
+          <ul class="docs__list">
+            <li class="docs__item">
+              <div class="docs__info">
+                <h6 class="docs__heading">Lorem ipsum dolor sit amet consectetur. Tempor dui nisl venenatis maecenas nulla.</h6>
+                <button class="docs__button button__plus button">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div class="docs__image">
+                <img src="./img/docs/img1.webp" alt="">
+              </div>
+            </li>
+            <li class="docs__item">
+              <div class="docs__info">
+                <h6 class="docs__heading">Lorem ipsum dolor sit amet consectetur. Tempor dui nisl venenatis maecenas nulla.</h6>
+                <button class="docs__button button__plus button">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div class="docs__image">
+                <img src="./img/docs/img2.webp" alt="">
+              </div>
+            </li>
+            <li class="docs__item">
+              <div class="docs__info">
+                <h6 class="docs__heading">Lorem ipsum dolor sit amet consectetur. Tempor dui nisl venenatis maecenas nulla.</h6>
+                <button class="docs__button button__plus button">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div class="docs__image">
+                <img src="./img/docs/img3.webp" alt="">
+              </div>
+            </li>
+            <li class="docs__item">
+              <div class="docs__info">
+                <h6 class="docs__heading">Lorem ipsum dolor sit amet consectetur. Tempor dui nisl venenatis maecenas nulla.</h6>
+                <button class="docs__button button__plus button">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div class="docs__image">
+                <img src="./img/docs/img4.webp" alt="">
+              </div>
+            </li>
+            <li class="docs__item">
+              <div class="docs__info">
+                <h6 class="docs__heading">Lorem ipsum dolor sit amet consectetur. Tempor dui nisl venenatis maecenas nulla.</h6>
+                <button class="docs__button button__plus button">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div class="docs__image">
+                <img src="./img/docs/img5.webp" alt="">
+              </div>
+            </li>
+            <li class="docs__item">
+              <div class="docs__info">
+                <h6 class="docs__heading">Lorem ipsum dolor sit amet consectetur. Tempor dui nisl venenatis maecenas nulla.</h6>
+                <button class="docs__button button__plus button">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 6V18M18 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div class="docs__image">
+                <img src="./img/docs/img6.webp" alt="">
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <div class="docs__popup">
+      <div class="docs__popup_content">
+        <button class="docs__popup_close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.54779 7.54827C7.88949 7.20656 8.44351 7.20656 8.78522 7.54827L20.4519 19.2149C20.7936 19.5566 20.7936 20.1107 20.4519 20.4524C20.1102 20.7941 19.5562 20.7941 19.2145 20.4524L7.54779 8.78571C7.20608 8.444 7.20608 7.88998 7.54779 7.54827Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.4519 7.54827C20.7936 7.88998 20.7936 8.444 20.4519 8.78571L8.78522 20.4524C8.44351 20.7941 7.88949 20.7941 7.54779 20.4524C7.20608 20.1107 7.20608 19.5566 7.54779 19.2149L19.2145 7.54827C19.5562 7.20656 20.1102 7.20656 20.4519 7.54827Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="docs__popup_image">
+          <img id="popupImage" src="" alt="Увеличенное изображение">
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container footer__container">
+        <div class="footer__block">
+          <div class="footer__flex">
+            <div class="footer__top">
+              <div class="footer__top_left">
+                <div class="footer__image">
+                  <img src="./img/footer/img.webp" alt="">
+                </div>
+                <p class="footer__link text_two">Напишите нам напрямую в телеграм и мы ответим на все интересущие вопросы.</p>
+                <a href="#" class="footer__desc button">Написать в телеграм</a>
+              </div>
+              <div class="footer__top_right">
+                <h2 class="footer__head">Оставьте заявку на бесплатную консультацию</h2>
+                <p class="footer__desc text_two">Инженер изучит ваш проект, предложит технологию работ и ответит на все вопросы.</p>
+                <form action="" class="footer__form">
+
+                </form>
+              </div>
+            </div>
+            <div class="footer__info">
+              <div class="footer__info_left">
+                <div class="footer__information">
+                  <p class="footer__name button">Номер телефона</p>
+                  <a href="tel://+79994544322" class="footer__link title_five">+7 (999) 454-43-22</a>
+                </div>
+                <div class="footer__information">
+                  <p class="footer__name button">Мессенджеры</p>
+                  <div class="footer__social">
+                    <a href="" target="_blank" class="footer__social_link">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1504 22.96C14.7765 22.96 14.138 22.7586 13.0282 21.9528C12.3262 22.8593 10.1031 23.5677 10.0062 22.3557C10.0062 21.4459 9.80563 20.677 9.57832 19.8377C9.30754 18.8036 9 17.652 9 15.9834C9 11.9982 12.256 9 16.1136 9C19.9747 9 23 12.1459 23 16.0203C23.0129 19.8348 19.9484 22.9397 16.1504 22.96ZM16.2072 12.4447C14.3285 12.3473 12.8644 13.6534 12.5401 15.7014C12.2727 17.3968 12.7474 19.4616 13.1518 19.5691C13.3457 19.6161 13.8338 19.2199 14.138 18.9144C14.641 19.2634 15.2268 19.473 15.8362 19.5221C17.7828 19.6161 19.4461 18.1277 19.5769 16.1748C19.6529 14.2177 18.1541 12.56 16.2072 12.448L16.2072 12.4447Z" fill="currentColor"/>
+                        <circle cx="16" cy="16" r="15.5" stroke="currentColor"/>
+                      </svg>
+                    </a>
+                    <a href="" target="_blank" class="footer__social_link">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.89368 15.7354C13.3833 14.1831 15.7103 13.1597 16.8746 12.6652C20.199 11.2534 20.8897 11.0082 21.34 11.0001C21.439 10.9983 21.6604 11.0234 21.8038 11.1422C21.9249 11.2425 21.9583 11.3781 21.9742 11.4732C21.9901 11.5683 22.01 11.785 21.9942 11.9543C21.8141 13.887 21.0346 18.5769 20.638 20.7415C20.4702 21.6574 20.1398 21.9645 19.8199 21.9945C19.1248 22.0599 18.5969 21.5255 17.9236 21.0749C16.8701 20.3697 16.2749 19.9308 15.2522 19.2427C14.0703 18.4475 14.8365 18.0104 15.51 17.2961C15.6863 17.1092 18.7492 14.2647 18.8084 14.0067C18.8159 13.9744 18.8227 13.8541 18.7527 13.7906C18.6828 13.7271 18.5794 13.7488 18.5049 13.7661C18.3992 13.7906 16.7162 14.9264 13.4557 17.1736C12.9779 17.5085 12.5452 17.6717 12.1575 17.6632C11.7301 17.6538 10.9079 17.4164 10.2967 17.2136C9.54708 16.9648 8.95127 16.8332 9.00315 16.4107C9.03017 16.1906 9.32702 15.9655 9.89368 15.7354Z" fill="currentColor"/>
+                        <circle cx="16" cy="16" r="15.5" stroke="currentColor"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="footer__information">
+                  <p class="footer__name button">Электронная почта</p>
+                  <a href="mailto://mail@yandex.ru" class="footer__link title_five">mail@yandex.ru</a>
+                </div>
+              </div>
+              <div class="footer__info_right">
+                <ul class="footer__list">
+                  <li class="footer__item">
+                    <a href="" class="footer__name button">Навигация</a>
+                  </li>
+                  <li class="footer__item">
+                    <a href="" class="footer__link text_two">Проекты</a>
+                  </li>
+                  <li class="footer__item">
+                    <a href="" class="footer__link text_two">Услуги</a>
+                  </li>
+                  <li class="footer__item">
+                    <a href="" class="footer__link text_two">О компании</a>
+                  </li>
+                  <li class="footer__item">
+                    <a href="" class="footer__link text_two">Сертификаты</a>
+                  </li>
+                </ul>
+                <div class="footer__details">
+                  <p class="footer__name button">Реквизиты</p>
+                  <p class="footer__link text_two">ИП Иванов Иван Иванович</p>
+                  <p class="footer__link text_two">ИНН 9786856956</p>
+                  <p class="footer__link text_two">ОГРН 485769867</p>
+                </div>
+              </div>
+            </div>
+            <div class="footer__bottom">
+              <div class="footer__bottom_left">
+                <p class="footer__copy text_small">© 2025 Cementacia. Все права защищены</p>
+              </div>
+              <div class="footer__bottom_right">
+                <a href="" class="footer__policy text_small">Политика конфиденциальности</a>
+                <button class="footer__uo text_small">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.00317 14.0625C9.31383 14.0625 9.56567 13.8107 9.56567 13.5V4.53769C9.56567 4.22703 9.31383 3.97519 9.00317 3.97519C8.69251 3.97519 8.44067 4.22703 8.44067 4.53769V13.5C8.44067 13.8107 8.69251 14.0625 9.00317 14.0625Z" fill="currentColor"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.10225 9.39775C4.32192 9.61742 4.67808 9.61742 4.89775 9.39775L9 5.2955L13.1023 9.39775C13.3219 9.61742 13.6781 9.61742 13.8977 9.39775C14.1174 9.17808 14.1174 8.82192 13.8977 8.60225L9.39775 4.10225C9.17808 3.88258 8.82192 3.88258 8.60225 4.10225L4.10225 8.60225C3.88258 8.82192 3.88258 9.17808 4.10225 9.39775Z" fill="currentColor"/>
+                  </svg>
+                  <span>Наверх</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    //   document.body.classList.add('loaded_hiding');
+    //   document.querySelector('.preloader__top').style.top = "-50%";
+    //   document.querySelector('.preloader__bottom').style.top = "100%";
+    //   window.scrollTo(0,0);
+    //   window.setTimeout(function () {
+        document.body.classList.add('loaded');
+    //     document.body.classList.remove('loaded_hiding');
+    //     document.querySelector('.preloader').style.display = "none";
+    //   }, 500);
+  });
+  </script>
+  <script src="js/swiper.min.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/textarea.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
