@@ -54,39 +54,210 @@ if(!year){} else {
 // end year
 
 // start navbar
-const overlay = document.querySelector('.overlay');
 const burger = document.querySelector('.header__burger');
+const nav = document.querySelector('.header__nav');
+const navItems = document.querySelectorAll('.header__nav_item');
+const overlay = document.querySelector('.overlay');
+const overlayFull = document.querySelector('.overlay_full');
+const navContent = document.querySelector('.header__nav_block');
 const docsPopup = document.querySelector('.docs__popup');
+const heroPopup = document.querySelector('.hero__popup');
 
-if (burger) {
+// Функция для установки max-height
+function setElementHeight(element) {
+  if (element.classList.contains('active')) {
+    element.style.maxHeight = element.scrollHeight + 'px';
+  } else {
+    element.style.maxHeight = '';
+  }
+}
+
+// Обработчик для бургер-меню
+if (burger && nav) {
   burger.addEventListener('click', function() {
-    if (burger.classList.contains('active')) {
-      burger.classList.remove('active');
-      overlay.classList.remove('active');
-      document.documentElement.classList.remove("noscroll");
-      if(docsPopup){docsPopup.classList.remove('active')};
+    const isActive = nav.classList.contains('active');
+    
+    // Переключаем активный класс у навигации
+    nav.classList.toggle('active');
+    burger.classList.toggle('active');
+    overlay.classList.toggle('active');
+    document.documentElement.classList.toggle('noscroll');
+    
+    if (!isActive) {
+      // Открываем навигацию - устанавливаем высоту контента
+      const navContentHeight = navContent.scrollHeight;
+      nav.style.maxHeight = navContentHeight + 'px';
     } else {
-      burger.classList.add('active');
-      overlay.classList.add('active');
-      document.documentElement.classList.add("noscroll");
+      // Закрываем навигацию
+      nav.style.maxHeight = '';
+      
+      // Закрываем все подменю
+      navItems.forEach(item => {
+        const subnav = item.querySelector('.header__subnav');
+        if (subnav) {
+          subnav.classList.remove('active');
+          subnav.style.maxHeight = '';
+          item.classList.remove('active');
+        }
+        if(window.innerWidth >= 1280){
+          overlay.classList.remove('active');
+          overlayFull.classList.remove('active');
+          if(docsPopup){docsPopup.classList.remove('active')};
+          if(heroPopup){heroPopup.classList.remove('active')};
+        }
+      });
     }
   });
 }
 
+// Обработчик для элементов навигации с подменю
+navItems.forEach(item => {
+  const link = item.querySelector('.header__nav_link');
+  const subnav = item.querySelector('.header__subnav');
+  const arrow = item.querySelector('.header__nav_arrow');
+  
+  if (link && subnav) {
+    link.addEventListener('click', function(e) {
+      // Если у элемента есть стрелка (подменю)
+      if (arrow) {
+        // Блокируем переход по ссылке только если элемент не активен
+        if (!item.classList.contains('active')) {
+          e.preventDefault();
+        }
+        
+        const wasActive = subnav.classList.contains('active');
+        const subnavHeight = subnav.scrollHeight;
+        const currentNavHeight = parseFloat(nav.style.maxHeight) || 0;
+        
+        // Закрываем все другие подменю
+        document.querySelectorAll('.header__subnav').forEach(otherSubnav => {
+          if (otherSubnav !== subnav && otherSubnav.classList.contains('active')) {
+            otherSubnav.classList.remove('active');
+            otherSubnav.style.maxHeight = '';
+            otherSubnav.closest('.header__nav_item').classList.remove('active');
+            if(window.innerWidth >= 1280){
+              overlay.classList.remove('active');
+              overlayFull.classList.remove('active');
+              if(docsPopup){docsPopup.classList.remove('active')};
+              if(heroPopup){heroPopup.classList.remove('active')};
+            }
+            
+            // Уменьшаем высоту навигации на высоту закрытого подменю
+            const otherHeight = otherSubnav.scrollHeight;
+            nav.style.maxHeight = (currentNavHeight - otherHeight) + 'px';
+          }
+        });
+        
+        // Получаем текущую высоту навигации после возможного закрытия других подменю
+        const updatedNavHeight = parseFloat(nav.style.maxHeight) || navContent.scrollHeight;
+        
+        if (!wasActive) {
+          // Открываем подменю
+          e.preventDefault(); // Блокируем переход при открытии подменю
+          subnav.classList.add('active');
+          item.classList.add('active');
+          subnav.style.maxHeight = subnavHeight + 'px';
+          nav.style.maxHeight = (updatedNavHeight + subnavHeight) + 'px';
+          if(window.innerWidth >= 1280){
+            overlay.classList.add('active');
+          }
+        } else {
+          // Закрываем подменю и разрешаем переход по ссылке
+          subnav.classList.remove('active');
+          item.classList.remove('active');
+          subnav.style.maxHeight = '';
+          nav.style.maxHeight = (updatedNavHeight - subnavHeight) + 'px';
+          if(window.innerWidth >= 1280){
+            overlay.classList.remove('active');
+            overlayFull.classList.remove('active');
+            if(docsPopup){docsPopup.classList.remove('active')};
+            if(heroPopup){heroPopup.classList.remove('active')};
+          }
+        }
+      }
+    });
+  }
+});
+
+// Закрытие меню при клике на оверлей
 if (overlay) {
   overlay.addEventListener('click', function() {
     if (overlay.classList.contains('active')) {
+      nav.classList.remove('active');
       burger.classList.remove('active');
       overlay.classList.remove('active');
-      document.documentElement.classList.remove("noscroll");
+      overlayFull.classList.remove('active');
       if(docsPopup){docsPopup.classList.remove('active')};
-    } else {
-      burger.classList.add('active');
-      overlay.classList.add('active');
-      document.documentElement.classList.add("noscroll");
+      if(heroPopup){heroPopup.classList.remove('active')};
+      document.documentElement.classList.remove('noscroll');
+      
+      nav.style.maxHeight = '';
+      
+      // Закрываем все подменю
+      navItems.forEach(item => {
+        const subnav = item.querySelector('.header__subnav');
+        if (subnav) {
+          subnav.classList.remove('active');
+          subnav.style.maxHeight = '';
+          item.classList.remove('active');
+        }
+      });
     }
   });
 }
+
+// Закрытие меню при клике на оверлей
+if (overlayFull) {
+  overlayFull.addEventListener('click', function() {
+    if (overlayFull.classList.contains('active')) {
+      nav.classList.remove('active');
+      burger.classList.remove('active');
+      overlay.classList.remove('active');
+      overlayFull.classList.remove('active');
+      if(docsPopup){docsPopup.classList.remove('active')};
+      if(heroPopup){heroPopup.classList.remove('active')};
+      document.documentElement.classList.remove('noscroll');
+      
+      nav.style.maxHeight = '';
+      
+      // Закрываем все подменю
+      navItems.forEach(item => {
+        const subnav = item.querySelector('.header__subnav');
+        if (subnav) {
+          subnav.classList.remove('active');
+          subnav.style.maxHeight = '';
+          item.classList.remove('active');
+        }
+      });
+    }
+  });
+}
+
+// Закрытие подменю при клике вне его
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.header__nav_item') && !e.target.closest('.header__burger')) {
+    navItems.forEach(item => {
+      const subnav = item.querySelector('.header__subnav');
+      if (subnav && subnav.classList.contains('active')) {
+        const subnavHeight = subnav.scrollHeight;
+        const currentNavHeight = parseFloat(nav.style.maxHeight) || 0;
+        if(window.innerWidth >= 1280){
+          overlay.classList.remove('active');
+          overlayFull.classList.remove('active');
+          if(docsPopup){docsPopup.classList.remove('active')};
+          if(heroPopup){heroPopup.classList.remove('active')};
+        }
+        
+        subnav.classList.remove('active');
+        item.classList.remove('active');
+        subnav.style.maxHeight = '';
+        
+        // Уменьшаем высоту навигации
+        nav.style.maxHeight = (currentNavHeight - subnavHeight) + 'px';
+      }
+    });
+  }
+});
 // end navbar
 
 // start select
@@ -186,6 +357,122 @@ class Select {
 Select.attach()
 // end select
 
+// start hero
+const heroButtons = document.querySelectorAll('.hero__button');
+const heroButton = document.querySelector('.hero__button');
+const heroClose = document.querySelector('.hero__popup_close');
+
+if(heroClose) {
+  heroClose.addEventListener('click', function() {
+    heroPopup.classList.remove('active');
+    overlayFull.classList.remove('active');
+    document.documentElement.classList.remove('noscroll');
+  });
+}
+heroButtons.forEach(function(button) {
+  if(heroButton) {
+    button.addEventListener('click', function() {
+      if (heroPopup.classList.contains('active')) {
+        heroPopup.classList.remove('active');
+        overlayFull.classList.remove('active');
+        document.documentElement.classList.remove('noscroll');
+      } else {
+        heroPopup.classList.add('active');
+        overlayFull.classList.add('active');
+        document.documentElement.classList.add('noscroll');
+      }
+    });
+  }
+});
+// end hero
+
+// start faq
+const accordionItems = document.querySelectorAll('.faq__item');
+
+// Функция для расчета высоты содержимого
+function calculateContentHeight(content) {
+  // Временно показываем элемент для измерения высоты
+  content.style.maxHeight = 'none';
+  content.style.visibility = 'hidden';
+  content.style.display = 'block';
+  
+  // Получаем полную высоту содержимого
+  const height = content.scrollHeight;
+  
+  // Возвращаем стили в исходное состояние
+  content.style.maxHeight = '';
+  content.style.visibility = '';
+  content.style.display = '';
+  
+  return height;
+}
+
+// Инициализация аккордеона
+function initAccordion() {
+  accordionItems.forEach(item => {
+    const button = item.querySelector('.faq__button');
+    const content = item.querySelector('.faq__info');
+    
+    // Рассчитываем и сохраняем высоту содержимого
+    const contentHeight = calculateContentHeight(content);
+    
+    // Обработчик клика по кнопке
+    button.addEventListener('click', function() {
+      // Закрываем все остальные элементы
+      if (!item.classList.contains('active')) {
+        accordionItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+            const otherContent = otherItem.querySelector('.faq__info');
+            otherContent.style.maxHeight = '0px';
+          }
+        });
+      }
+      
+      // Переключаем текущий элемент
+      item.classList.toggle('active');
+      
+      // Анимируем высоту содержимого
+      if (item.classList.contains('active')) {
+        content.style.maxHeight = contentHeight + 'px';
+      } else {
+        content.style.maxHeight = '0px';
+      }
+    });
+    
+    // Устанавливаем начальную высоту для закрытых элементов
+    if (!item.classList.contains('active')) {
+      content.style.maxHeight = '0px';
+    } else {
+      content.style.maxHeight = contentHeight + 'px';
+    }
+  });
+}
+
+// Функция для обновления высоты при изменении размера окна
+function updateAccordionHeights() {
+  accordionItems.forEach(item => {
+    const content = item.querySelector('.faq__info');
+    
+    if (item.classList.contains('active')) {
+      // Пересчитываем высоту для открытых элементов
+      const contentHeight = calculateContentHeight(content);
+      content.style.maxHeight = contentHeight + 'px';
+    }
+  });
+}
+
+// Инициализируем аккордеон
+initAccordion();
+
+// Обновляем высоту при изменении размера окна
+let resizeTimer;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(updateAccordionHeights, 250);
+});
+// end faq
+
 // start build
 // Получаем все кнопки с классом build__button
 const buttons = document.querySelectorAll('.build__button');
@@ -230,16 +517,16 @@ function activateBlock(blockNumber) {
 
 // Обработчики кликов для кнопок
 buttons.forEach(button => {
-    button.addEventListener('click', function() {
-        // Определяем номер блока по классу кнопки
-        if (this.classList.contains('build__button_one')) {
-            activateBlock('one');
-        } else if (this.classList.contains('build__button_two')) {
-            activateBlock('two');
-        } else if (this.classList.contains('build__button_three')) {
-            activateBlock('three');
-        }
-    });
+  button.addEventListener('click', function() {
+    // Определяем номер блока по классу кнопки
+    if (this.classList.contains('build__button_one')) {
+      activateBlock('one');
+    } else if (this.classList.contains('build__button_two')) {
+      activateBlock('two');
+    } else if (this.classList.contains('build__button_three')) {
+      activateBlock('three');
+    }
+  });
 });
 
 const buildSliderOne = document.querySelector('.build__swiper_one');
@@ -258,7 +545,7 @@ if(buildSliderOne){
         slidesPerView: 2,
         spaceBetween: 20,
       },
-      1440: {
+      1280: {
         slidesPerView: 2,
         spaceBetween: 20,
       },
@@ -285,7 +572,7 @@ if(buildSliderTwo){
         slidesPerView: 2,
         spaceBetween: 20,
       },
-      1440: {
+      1280: {
         slidesPerView: 2,
         spaceBetween: 20,
       },
@@ -312,7 +599,7 @@ if(buildSliderThree){
         slidesPerView: 2,
         spaceBetween: 20,
       },
-      1440: {
+      1280: {
         slidesPerView: 2,
         spaceBetween: 20,
       },
@@ -347,527 +634,64 @@ if(projectdesktopSlider){
 // start dosc
 const closePopup = document.querySelector('.docs__popup_close');
 const popupImage = document.getElementById('popupImage');
-
-// Получаем все элементы docs__item
 const docItems = document.querySelectorAll('.docs__item');
 
-// Функция для открытия попапа
-function openPopup(imageSrc, altText) {
-  popupImage.src = imageSrc;
-  popupImage.alt = altText || 'Увеличенное изображение';
-  docsPopup.classList.add('active');
-  overlay.classList.add('active');
-  document.documentElement.classList.add("noscroll");
-}
-
-// Функция для закрытия попапа
-function closePopupHandler() {
-  docsPopup.classList.remove('active');
-  overlay.classList.remove('active');
-  document.documentElement.classList.remove("noscroll");
-}
-
-// Добавляем обработчики кликов на каждый элемент docs__item
-docItems.forEach(item => {
-  item.addEventListener('click', function(event) {
-    // Ищем изображение внутри текущего элемента
-    const image = this.querySelector('.docs__image img');
-    const altText = this.querySelector('.docs__heading')?.textContent || '';
-    
-    if (image && image.src) {
-      openPopup(image.src, altText);
-    }
-  });
-});
-
-// Закрытие по клику на крестик
-closePopup.addEventListener('click', closePopupHandler);
-
-// Закрытие по клику на оверлей (вне изображения)
-docsPopup.addEventListener('click', function(event) {
-  if (event.target === docsPopup) {
-    closePopupHandler();
-  }
-});
-
-// Предотвращаем закрытие при клике на само изображение
-popupImage.addEventListener('click', function(event) {
-  event.stopPropagation();
-});
-// end dosc
-
-// start index animation
-const headerform = document.querySelector('.header__forms_form_controls');
-const headerforms = document.querySelectorAll('.header__forms_form_controls');
-if(headerform){
-  [...headerforms].forEach(function (li) {
-    for (let [index, elem] of [...li.children].entries()){
-      elem.style.setProperty('--inc-step', index+1);
-    }
-  });
-}
-
-const digital = document.querySelector('.digital');
-const digitalinfo = document.querySelectorAll('.digital__info');
-const digitalsl = document.querySelectorAll('.digital_social_list');
-if(digital){
-  let digitald = document.querySelectorAll('.digital');
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-  let digitaldopt = {threshold: [0]};
-  let digitaldserv = new IntersectionObserver(onEntry, digitaldopt);
-  for (let elm of digitald) {digitaldserv.observe(elm);}
-
-  let digitalopt = {threshold: [0.5]};
-  let digitalserv = new IntersectionObserver(onEntry, digitalopt);
-  for (let elm of digitalinfo) {digitalserv.observe(elm);}
-  const digitalhead = document.querySelectorAll('.digital__head'); 
-  [...digitalhead].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-
-  let digitallopt = {threshold: [0.5]};
-  let digitallserv = new IntersectionObserver(onEntry, digitallopt);
-  for (let elm of digitalsl) {digitallserv.observe(elm);}
-  [...digitalsl].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-}
-
-const breadcrumb = document.querySelector('.breadcrumbs__item');
-const breadcrumbs = document.querySelectorAll('.breadcrumbs__list');
-if(breadcrumb){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-  let breadcrumbopt = {threshold: [0.5]};
-  let breadcrumbserv = new IntersectionObserver(onEntry, breadcrumbopt);
-  for (let elm of breadcrumbs) {breadcrumbserv.observe(elm);}
-  [...breadcrumbs].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-}
-
-const expertise = document.querySelector('.expertise');
-const expertiseleft = document.querySelectorAll('.expertise__left');
-const expertiseright = document.querySelectorAll('.expertise__right');
-if(expertise){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let expertiseleftopt = {threshold: [0.5]};
-  let expertiseleftserv = new IntersectionObserver(onEntry, expertiseleftopt);
-  for (let elm of expertiseleft) {expertiseleftserv.observe(elm);}
-  [...expertiseleft].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-
-  let expertiserightopt = {threshold: [0.5]};
-  let expertiserightserv = new IntersectionObserver(onEntry, expertiserightopt);
-  for (let elm of expertiseright) {expertiserightserv.observe(elm);}
-}
-
-const projects = document.querySelector('.projects');
-const projectsflex = document.querySelectorAll('.projects__flex');
-const projectsallflex = document.querySelector('.projects__all_flex');
-const projectsallflexs = document.querySelectorAll('.projects__all_flex');
-const projectsitem = document.querySelectorAll('.projects__item');
-if(projects){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  if (projectsallflex) {
-    let projectsallflexsopt = {threshold: [0.5]};
-    let projectsallflexsserv = new IntersectionObserver(onEntry, projectsallflexsopt);
-    for (let elm of projectsallflexs) {projectsallflexsserv.observe(elm);}
+if(popupImage){
+  // Функция для открытия попапа
+  function openPopup(imageSrc, altText) {
+    popupImage.src = imageSrc;
+    popupImage.alt = altText || 'Увеличенное изображение';
+    docsPopup.classList.add('active');
+    overlayFull.classList.add('active');
+    document.documentElement.classList.add("noscroll");
   }
 
-  let projectsflexopt = {threshold: [0.5]};
-  let projectsflexserv = new IntersectionObserver(onEntry, projectsflexopt);
-  for (let elm of projectsflex) {projectsflexserv.observe(elm);}
+  // Функция для закрытия попапа
+  function closePopupHandler() {
+    docsPopup.classList.remove('active');
+    overlay.classList.remove('active');
+    overlayFull.classList.remove('active');
+    document.documentElement.classList.remove("noscroll");
+  }
 
-  let projectsitemopt = {threshold: [0.3]};
-  let projectsitemserv = new IntersectionObserver(onEntry, projectsitemopt);
-  for (let elm of projectsitem) {projectsitemserv.observe(elm);}
+  // Добавляем обработчики кликов на каждый элемент docs__item
+  docItems.forEach(item => {
+    item.addEventListener('click', function(event) {
+      // Ищем изображение внутри текущего элемента
+      const image = this.querySelector('.docs__image img');
+      const altText = this.querySelector('.docs__heading')?.textContent || '';
+      
+      if (image && image.src) {
+        openPopup(image.src, altText);
+      }
+    });
+  });
+
+  // Закрытие по клику на крестик
+  closePopup.addEventListener('click', closePopupHandler);
+
+  // Предотвращаем закрытие при клике на само изображение
+  popupImage.addEventListener('click', function(event) {
+    event.stopPropagation();
+  });
 }
-
-const projectt = document.querySelector('.project_top');
-const projecttopblock = document.querySelectorAll('.project_top__block');
-if(projectt){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let projecttopblockopt = {threshold: [0.5]};
-  let projecttopblockserv = new IntersectionObserver(onEntry, projecttopblockopt);
-  for (let elm of projecttopblock) {projecttopblockserv.observe(elm);}
-}
-
-const projecti = document.querySelector('.project__info');
-const projectbannerblock = document.querySelectorAll('.project__info');
-if(projecti){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let projectbannerblockopt = {threshold: [0.5]};
-  let projectbannerblockserv = new IntersectionObserver(onEntry, projectbannerblockopt);
-  for (let elm of projectbannerblock) {projectbannerblockserv.observe(elm);}
-}
-
-const articles = document.querySelector('.articles');
-const articlestop = document.querySelectorAll('.articles__top');
-const articlesitem = document.querySelectorAll('.articles__item');
-if(articles){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let articlestopopt = {threshold: [0.5]};
-  let articlestopserv = new IntersectionObserver(onEntry, articlestopopt);
-  for (let elm of articlestop) {articlestopserv.observe(elm);}
-
-  let articlesitemopt = {threshold: [0.5]};
-  let articlesitemserv = new IntersectionObserver(onEntry, articlesitemopt);
-  for (let elm of articlesitem) {articlesitemserv.observe(elm);}
-}
-
-const servicest = document.querySelector('.services_top');
-const servicestb = document.querySelectorAll('.services_top__block');
-if(servicest){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let servicestbopt = {threshold: [0.5]};
-  let servicestbserv = new IntersectionObserver(onEntry, servicestbopt);
-  for (let elm of servicestb) {servicestbserv.observe(elm);}
-}
-
-const services = document.querySelector('.services');
-const servicesleft = document.querySelectorAll('.services__left');
-const serviceslleft = document.querySelectorAll('.services__list_left');
-const serviceslright = document.querySelectorAll('.services__list_right');
-if(services){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let servicesleftopt = {threshold: [0.5]};
-  let servicesleftserv = new IntersectionObserver(onEntry, servicesleftopt);
-  for (let elm of servicesleft) {servicesleftserv.observe(elm);}
-
-  let serviceslleftopt = {threshold: [0.5]};
-  let serviceslleftserv = new IntersectionObserver(onEntry, serviceslleftopt);
-  for (let elm of serviceslleft) {serviceslleftserv.observe(elm);}
-  [...serviceslleft].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-
-  let serviceslrightopt = {threshold: [0.5]};
-  let serviceslrightserv = new IntersectionObserver(onEntry, serviceslrightopt);
-  for (let elm of serviceslright) {serviceslrightserv.observe(elm);}
-  [...serviceslright].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-}
-
-const careert = document.querySelector('.career_top');
-const careerti = document.querySelectorAll('.career_top__info');
-if(careert){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let careertiopt = {threshold: [0.5]};
-  let careertiserv = new IntersectionObserver(onEntry, careertiopt);
-  for (let elm of careerti) {careertiserv.observe(elm);}
-}
-
-const careerb = document.querySelector('.career_bottom');
-const careerbb = document.querySelectorAll('.career_bottom__block');
-if(careerb){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let careerbbopt = {threshold: [0.5]};
-  let careerbbserv = new IntersectionObserver(onEntry, careerbbopt);
-  for (let elm of careerbb) {careerbbserv.observe(elm);}
-  [...careerbb].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-}
-
-const career = document.querySelector('.career');
-const careerleft = document.querySelectorAll('.career__left');
-const careerright = document.querySelectorAll('.career__right');
-if(career){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let careerleftopt = {threshold: [0.5]};
-  let careerleftserv = new IntersectionObserver(onEntry, careerleftopt);
-  for (let elm of careerleft) {careerleftserv.observe(elm);}
-
-  let careerrightopt = {threshold: [0.5]};
-  let careerrightserv = new IntersectionObserver(onEntry, careerrightopt);
-  for (let elm of careerright) {careerrightserv.observe(elm);}
-  [...careerright].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-}
-
-const contacts = document.querySelector('.contacts');
-const contactsb = document.querySelectorAll('.contacts__block');
-const contactssl = document.querySelectorAll('.contacts__social_list');
-const contactssil = document.querySelectorAll('.contacts__social_info_list');
-const contactssp = document.querySelectorAll('.contacts__social_project');
-if(contacts){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let contactsbopt = {threshold: [0.5]};
-  let contactsbserv = new IntersectionObserver(onEntry, contactsbopt);
-  for (let elm of contactsb) {contactsbserv.observe(elm);}
-
-  let contactsslopt = {threshold: [0.5]};
-  let contactsslserv = new IntersectionObserver(onEntry, contactsslopt);
-  for (let elm of contactssl) {contactsslserv.observe(elm);}
-  [...contactssl].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-
-  let contactssilopt = {threshold: [0.5]};
-  let contactssilserv = new IntersectionObserver(onEntry, contactssilopt);
-  for (let elm of contactssil) {contactssilserv.observe(elm);}
-  [...contactssil].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-
-  let contactsspopt = {threshold: [0.5]};
-  let contactsspserv = new IntersectionObserver(onEntry, contactsspopt);
-  for (let elm of contactssp) {contactsspserv.observe(elm);}
-}
-
-const articlespage = document.querySelector('.articles_page');
-const articlespageitem = document.querySelectorAll('.articles_page__item');
-const articlespageblock = document.querySelectorAll('.articles_page__block');
-const articlespagechecks = document.querySelectorAll('.articles_page__checks');
-if(articlespage){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let articlespageitemopt = {threshold: [0.3]};
-  let articlespageitemserv = new IntersectionObserver(onEntry, articlespageitemopt);
-  for (let elm of articlespageitem) {articlespageitemserv.observe(elm);}
-
-  let articlespageblockopt = {threshold: [0.5]};
-  let articlespageblockserv = new IntersectionObserver(onEntry, articlespageblockopt);
-  for (let elm of articlespageblock) {articlespageblockserv.observe(elm);}
-  [...articlespagechecks].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-}
-
-const subscription = document.querySelector('.subscription');
-const subscriptionblock = document.querySelectorAll('.subscription__block');
-if(subscription){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let subscriptionblockopt = {threshold: [0.5]};
-  let subscriptionblockserv = new IntersectionObserver(onEntry, subscriptionblockopt);
-  for (let elm of subscriptionblock) {subscriptionblockserv.observe(elm);}
-}
-
-const teamtop = document.querySelector('.team__top');
-const teamtopblock = document.querySelectorAll('.team__top_block');
-if(teamtop){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let teamtopblockopt = {threshold: [0.5]};
-  let teamtopblockserv = new IntersectionObserver(onEntry, teamtopblockopt);
-  for (let elm of teamtopblock) {teamtopblockserv.observe(elm);}
-}
-
-const teambottom = document.querySelector('.team__bottom');
-const teambottominfo = document.querySelectorAll('.team__bottom_info');
-const teambottomtop = document.querySelectorAll('.team__bottom_top');
-const teambottombottom = document.querySelectorAll('.team__bottom_bottom');
-if(teambottom){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let teambottominfoopt = {threshold: [0.5]};
-  let teambottominfoserv = new IntersectionObserver(onEntry, teambottominfoopt);
-  for (let elm of teambottominfo) {teambottominfoserv.observe(elm);}
-
-  let teambottomtopopt = {threshold: [0.5]};
-  let teambottomtopserv = new IntersectionObserver(onEntry, teambottomtopopt);
-  for (let elm of teambottomtop) {teambottomtopserv.observe(elm);}
-
-  let teambottombottomopt = {threshold: [0.5]};
-  let teambottombottomserv = new IntersectionObserver(onEntry, teambottombottomopt);
-  for (let elm of teambottombottom) {teambottombottomserv.observe(elm);}
-}
-
-const newteam = document.querySelector('.newteam');
-const newteamitem = document.querySelectorAll('.newteam__item');
-if(newteam) {
-  let newteamd = document.querySelectorAll('.newteam');
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {
-    change.target.classList.add('animate');
-  }});};
-  let newteamdopt = {threshold: [0]};
-  let newteamdserv = new IntersectionObserver(onEntry, newteamdopt);
-  for (let elm of newteamd) {newteamdserv.observe(elm);}
-
-  let newteamopt = {threshold: [0.5]};
-  let newteamserv = new IntersectionObserver(onEntry, newteamopt);
-  for (let elm of newteamitem) {newteamserv.observe(elm);}
-}
-
-const teamslider = document.querySelector('.team_slider');
-const teamsliderswiper = document.querySelectorAll('.team_slider__swiper');
-if(teamslider){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let teamsliderswiperopt = {threshold: [0.5]};
-  let teamsliderswiperserv = new IntersectionObserver(onEntry, teamsliderswiperopt);
-  for (let elm of teamsliderswiper) {teamsliderswiperserv.observe(elm);}
-}
-
-const teamclients = document.querySelector('.team_clients');
-const teamclientsitem = document.querySelectorAll('.team_clients__item');
-const teamsliderinfo = document.querySelectorAll('.team_slider__info');
-if(teamclients){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let teamsliderinfoopt = {threshold: [0.5]};
-  let teamsliderinfoserv = new IntersectionObserver(onEntry, teamsliderinfoopt);
-  for (let elm of teamsliderinfo) {teamsliderinfoserv.observe(elm);}
-
-  let teamclientsitemopt = {threshold: [0.5]};
-  let teamclientsitemserv = new IntersectionObserver(onEntry, teamclientsitemopt);
-  for (let elm of teamclientsitem) {teamclientsitemserv.observe(elm);}
-}
-
-const teamcomments = document.querySelector('.team_comments');
-const teamscommentsitem = document.querySelectorAll('.team_comments__item');
-const teamscommentsbuttons = document.querySelectorAll('.team_comments__buttons');
-if(teamcomments){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let teamscommentsitemopt = {threshold: [0.5]};
-  let teamscommentsitemserv = new IntersectionObserver(onEntry, teamscommentsitemopt);
-  for (let elm of teamscommentsitem) {teamscommentsitemserv.observe(elm);}
-
-  let teamscommentsbuttonsopt = {threshold: [0.5]};
-  let teamscommentsbuttonsserv = new IntersectionObserver(onEntry, teamscommentsbuttonsopt);
-  for (let elm of teamscommentsbuttons) {teamscommentsbuttonsserv.observe(elm);}
-}
-
-const errorpage = document.querySelector('.error_page');
-const errorpageflex = document.querySelectorAll('.error_page__flex');
-if(errorpage){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let errorpageflexopt = {threshold: [0.5]};
-  let errorpageflexserv = new IntersectionObserver(onEntry, errorpageflexopt);
-  for (let elm of errorpageflex) {errorpageflexserv.observe(elm);}
-}
-
-const article = document.querySelector('.article');
-const articleinfoblock = document.querySelectorAll('.article__info_block');
-const articleinfoflex = document.querySelectorAll('.article__info_flex');
-if(article){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let articleinfoblockopt = {threshold: [0.5]};
-  let articleinfoblockserv = new IntersectionObserver(onEntry, articleinfoblockopt);
-  for (let elm of articleinfoblock) {articleinfoblockserv.observe(elm);}
-  [...articleinfoblock].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-
-  let articleinfoflexopt = {threshold: [0.5]};
-  let articleinfoflexserv = new IntersectionObserver(onEntry, articleinfoflexopt);
-  for (let elm of articleinfoflex) {articleinfoflexserv.observe(elm);}
-}
-
-const briefingform = document.querySelector('.briefing__form');
-const briefingforms = document.querySelectorAll('.briefing__form');
-const briefingleft = document.querySelectorAll('.briefing__left');
-if(briefingform){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let briefingformsopt = {threshold: [0.1]};
-  let briefingformsserv = new IntersectionObserver(onEntry, briefingformsopt);
-  for (let elm of briefingforms) {briefingformsserv.observe(elm);}
-
-  let briefingleftopt = {threshold: [0.1]};
-  let briefingleftserv = new IntersectionObserver(onEntry, briefingleftopt);
-  for (let elm of briefingleft) {briefingleftserv.observe(elm);}
-}
-
-const certificates = document.querySelector('.certificates');
-const certificatesblock = document.querySelectorAll('.certificates__block');
-const certificatesflex = document.querySelectorAll('.certificates__flex');
-if(certificates){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let certificatesblockopt = {threshold: [0.5]};
-  let certificatesblockserv = new IntersectionObserver(onEntry, certificatesblockopt);
-  for (let elm of certificatesblock) {certificatesblockserv.observe(elm);}
-
-  let certificatesflexopt = {threshold: [0.5]};
-  let certificatesflexserv = new IntersectionObserver(onEntry, certificatesflexopt);
-  for (let elm of certificatesflex) {certificatesflexserv.observe(elm);}
-}
-
-const competencies = document.querySelector('.competencies');
-const competenciesblock = document.querySelectorAll('.competencies__block');
-const competenciesbottom = document.querySelectorAll('.competencies__bottom');
-const competencieslist = document.querySelectorAll('.competencies__list');
-if(competencies){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let competenciesblockopt = {threshold: [0.5]};
-  let competenciesblockserv = new IntersectionObserver(onEntry, competenciesblockopt);
-  for (let elm of competenciesblock) {competenciesblockserv.observe(elm);}
-
-  let competenciesbottomopt = {threshold: [0.5]};
-  let competenciesbottomserv = new IntersectionObserver(onEntry, competenciesbottomopt);
-  for (let elm of competenciesbottom) {competenciesbottomserv.observe(elm);}
-
-  [...competencieslist].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-}
-
-const policy = document.querySelector('.policy');
-const policytopblock = document.querySelectorAll('.policy_top__block');
-const policyblock = document.querySelectorAll('.policy__block');
-if(policy){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let policytopblockopt = {threshold: [0.5]};
-  let policytopblockserv = new IntersectionObserver(onEntry, policytopblockopt);
-  for (let elm of policytopblock) {policytopblockserv.observe(elm);}
-
-  let policyblockopt = {threshold: [0.3]};
-  let policyblockserv = new IntersectionObserver(onEntry, policyblockopt);
-  for (let elm of policyblock) {policyblockserv.observe(elm);}
-}
-
-const price = document.querySelector('.price');
-const priceblock = document.querySelectorAll('.price__block');
-const priceitem = document.querySelectorAll('.price__item');
-if(price){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let priceblockopt = {threshold: [0.5]};
-  let priceblockserv = new IntersectionObserver(onEntry, priceblockopt);
-  for (let elm of priceblock) {priceblockserv.observe(elm);}
-
-  let priceitemopt = {threshold: [0.3]};
-  let priceitemserv = new IntersectionObserver(onEntry, priceitemopt);
-  for (let elm of priceitem) {priceitemserv.observe(elm);}
-}
-
-const generationitem = document.querySelector('.generation__item');
-const generationitems = document.querySelectorAll('.generation__item');
-if(generationitem){
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-
-  let generationitemsopt = {threshold: [0.5]};
-  let generationitemsserv = new IntersectionObserver(onEntry, generationitemsopt);
-  for (let elm of generationitems) {generationitemsserv.observe(elm);}
-}
-
-const footer = document.querySelector('.footer');
-const footerlist = document.querySelectorAll('.footer__list');
-const footerleft = document.querySelectorAll('.footer__left');
-const footerrb = document.querySelectorAll('.footer__right_block');
-const footerbottom = document.querySelectorAll('.footer__bottom');
-const footerinfo = document.querySelectorAll('.footer__info');
-if(footer){
-  let footerd = document.querySelectorAll('.footer');
-  function onEntry(entry) {entry.forEach(change => {if (change.isIntersecting) {change.target.classList.add('animate');}});};
-  let footerdopt = {threshold: [0]};
-  let footerdserv = new IntersectionObserver(onEntry, footerdopt);
-  for (let elm of footerd) {footerdserv.observe(elm);}
+// end docs
+
+// start breadcrumbs__back
+const backButton = document.querySelector('.breadcrumbs__back');
+if (backButton) {
+  backButton.addEventListener('click', function() {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = '/';
+    }
+  });
   
-  let footerlistopt = {threshold: [0.5]};
-  let footerlistserv = new IntersectionObserver(onEntry, footerlistopt);
-  for (let elm of footerlist) {footerlistserv.observe(elm);}
-  
-  [...footerlist].forEach(function (li) {for (let [index, elem] of [...li.children].entries()){elem.style.setProperty('--inc-step', index+1);}});
-  let footerleftopt = {threshold: [0.5]};
-  let footerleftserv = new IntersectionObserver(onEntry, footerleftopt);
-  for (let elm of footerleft) {footerleftserv.observe(elm);}
-  
-  let footerrbopt = {threshold: [0.5]};
-  let footerrbserv = new IntersectionObserver(onEntry, footerrbopt);
-  for (let elm of footerrb) {footerrbserv.observe(elm);}
-  
-  let footerbottomopt = {threshold: [0.5]};
-  let footerbottomserv = new IntersectionObserver(onEntry, footerbottomopt);
-  for (let elm of footerbottom) {footerbottomserv.observe(elm);}
-  
-  let footerinfoopt = {threshold: [0.5]};
-  let footerinfoserv = new IntersectionObserver(onEntry, footerinfoopt);
-  for (let elm of footerinfo) {footerinfoserv.observe(elm);}
+  // Опционально: добавляем атрибут для доступности
+  backButton.setAttribute('title', 'Назад');
+  backButton.setAttribute('aria-label', 'Вернуться на предыдущую страницу');
+} else {
+  console.warn('Кнопка с классом .breadcrumbs__back не найдена');
 }
-// end index animation
+// end breadcrumbs__back
