@@ -17,6 +17,9 @@ class FormValidator {
     // Объект для хранения масок
     this.masks = new Map();
     
+    // URL для отправки формы (замените на ваш реальный URL)
+    this.apiUrl = 'https://ваш-домен.ru/api/send-form';
+    
     this.init();
   }
 
@@ -335,7 +338,7 @@ class FormValidator {
     }
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
     
     let isValid = true;
@@ -361,30 +364,86 @@ class FormValidator {
       return;
     }
     
-    // Собираем данные
-    const formData = new FormData(this.form);
-    const data = {};
-    
-    // Добавляем текстовые данные
-    this.inputs.forEach(input => {
-      data[input.id] = input.value.trim();
-    });
-    
-    // Добавляем файлы
-    if (this.filesToUpload.length > 0) {
-      this.filesToUpload.forEach(fileData => {
-        formData.append('files[]', fileData.file);
-      });
+    // Отключаем кнопку отправки
+    if (this.submitBtn) {
+      this.submitBtn.disabled = true;
+      this.submitBtn.textContent = 'Отправка...';
     }
     
-    console.log(`Форма ${this.form.id} отправлена:`, data);
-    console.log('Файлы:', this.filesToUpload);
-    
-    // Показываем успешное сообщение
-    this.showSuccessMessage();
-    
-    // Сбрасываем форму
-    this.resetForm();
+    try {
+      // Собираем данные для отправки
+      const formData = new FormData();
+      
+      // Добавляем текстовые данные
+      this.inputs.forEach(input => {
+        formData.append(input.name || input.id, input.value.trim());
+      });
+      
+      // Добавляем файлы
+      if (this.filesToUpload.length > 0) {
+        this.filesToUpload.forEach(fileData => {
+          formData.append('files', fileData.file, fileData.name);
+        });
+      }
+      
+      // Добавляем информацию о форме
+      formData.append('formId', this.form.id);
+      formData.append('timestamp', new Date().toISOString());
+      
+      // Отправляем запрос на сервер
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        body: formData,
+        // Не устанавливаем Content-Type, FormData установит его автоматически с boundary
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      
+      console.log('Форма успешно отправлена:', result);
+      
+      // Показываем успешное сообщение
+      this.showSuccessMessage();
+      
+      // Сбрасываем форму
+      this.resetForm();
+      
+    } catch (error) {
+      console.error('Ошибка при отправке формы:', error);
+      this.showErrorMessage('Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.');
+    } finally {
+      // Включаем кнопку отправки обратно
+      if (this.submitBtn) {
+        this.submitBtn.disabled = false;
+        this.submitBtn.textContent = 'Отправить заявку';
+      }
+    }
+  }
+
+  // Альтернативный метод отправки без файлов (если нужен JSON)
+  async sendFormDataAsJson(data) {
+    try {
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      return await response.json();
+      
+    } catch (error) {
+      console.error('Ошибка при отправке JSON:', error);
+      throw error;
+    }
   }
 
   showSuccessMessage() {
@@ -401,6 +460,7 @@ class FormValidator {
         color: #155724;
         border: 1px solid #c3e6cb;
         border-radius: 5px;
+        text-align: center;
       `;
       successMsg.textContent = 'Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.';
       
@@ -413,6 +473,36 @@ class FormValidator {
     setTimeout(() => {
       if (successMsg) {
         successMsg.style.display = 'none';
+      }
+    }, 5000);
+  }
+
+  showErrorMessage(message) {
+    // Создаем или находим элемент для сообщения об ошибке
+    let errorMsg = this.form.querySelector('.form__error_message');
+    
+    if (!errorMsg) {
+      errorMsg = document.createElement('div');
+      errorMsg.className = 'form__error_message';
+      errorMsg.style.cssText = `
+        padding: 15px;
+        margin-top: 20px;
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        border-radius: 5px;
+        text-align: center;
+      `;
+      this.form.appendChild(errorMsg);
+    }
+    
+    errorMsg.textContent = message;
+    errorMsg.style.display = 'block';
+    
+    // Автоматически скрываем сообщение через 5 секунд
+    setTimeout(() => {
+      if (errorMsg) {
+        errorMsg.style.display = 'none';
       }
     }, 5000);
   }
