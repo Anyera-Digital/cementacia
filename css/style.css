@@ -854,6 +854,89 @@ section {
 .form__bottom {
   padding: 40px 0 0;
 }
+.form__policy {
+  margin-top: 20px;
+  position: relative;
+}
+.form__policy.error .policy__checkmark {
+  border-color: var(--error);
+}
+.form__policy.error .form__error_policy {
+  color: var(--error);
+  display: block;
+}
+.form__error_policy {
+  display: none;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.policy__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+}
+.policy__input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.policy__checkmark {
+  display: flex;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  transition: background-color 0.15s linear, border-color 0.15s linear;
+}
+.policy__checkmark svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  color: var(--bg);
+  transition: opacity 0.15s linear;
+}
+.policy__input:checked ~ .policy__checkmark {
+  background-color: var(--text);
+  border-color: var(--text);
+}
+.policy__input:checked ~ .policy__checkmark svg {
+  opacity: 1;
+}
+.policy__text {
+  color: var(--text-gray);
+}
+.policy__text a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.policy__text a:hover {
+  color: var(--color);
+}
+.form__black .policy__text {
+  color: var(--text-dgray);
+}
+.form__black .policy__text a {
+  color: var(--bg);
+}
+.form__black .policy__checkmark {
+  background-color: transparent;
+  border-color: var(--dborder);
+}
+.form__black .policy__input:checked ~ .policy__checkmark {
+  background-color: var(--bg);
+  border-color: var(--bg);
+}
+.form__black .policy__input:checked ~ .policy__checkmark svg {
+  color: var(--text);
+}
 /* end form */
 
 /* start button */
@@ -1289,7 +1372,7 @@ section {
   object-fit: cover;
 }
 .header__logo_link svg {
-  height: 30px;
+  height: 24px;
   object-fit: contain;
 }
 /* end hero */
